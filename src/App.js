@@ -1,25 +1,19 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import { SafeAreaView, StatusBar } from 'react-native'
-import styled from 'styled-components/native'
 
-const TouchableOpacity = styled.TouchableOpacity`
-  background: #0747a6;
-  padding: 16px;
-`
-const Text = styled.Text`
-  color: white;
-  text-align: center;
-`
+import '~/config/ReactotronConfig'
+
+import Example from '~/components/Example'
+import store from '~/store'
 
 const App = () => (
-  <>
+  <Provider store={store}>
     <StatusBar barStyle="dark-content" />
     <SafeAreaView>
-      <TouchableOpacity>
-        <Text>Click</Text>
-      </TouchableOpacity>
+      <Example />
     </SafeAreaView>
-  </>
+  </Provider>
 )
 
 export default App
