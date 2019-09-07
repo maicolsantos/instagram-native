@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { View } from 'react-native'
 
-import Example from '~/components/Example'
+import { actions } from './store/actions'
 
-export default () => (
-  <Example />
-)
+export default () => {
+  const dispatch = useDispatch()
+
+  const getFeed = () => {
+    dispatch(actions.getFeed())
+  }
+
+  useEffect(() => {
+    getFeed()
+  }, [])
+
+  return (
+    <View />
+  )
+}
