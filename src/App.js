@@ -1,18 +1,16 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { SafeAreaView, StatusBar } from 'react-native'
+import { StatusBar } from 'react-native'
 
 import '~/config/ReactotronConfig'
 
-import Example from '~/components/Example'
+import Routes from '~/routes'
 import store from '~/store'
 
 const App = () => (
   <Provider store={store}>
-    <StatusBar barStyle="dark-content" />
-    <SafeAreaView>
-      <Example />
-    </SafeAreaView>
+    <StatusBar backgroundColor="#f5f5f5" barStyle="dark-content" />
+    <Routes />
   </Provider>
 )
 
