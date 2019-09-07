@@ -7,3 +7,7 @@ Challenger - clone instagram app
   - `react-native run-ios --simulator='iPhone 6s'`
 ### Android
   - `react-native run-android`
+
+Enable localhost to android
+  - `adb reverse tcp:3000 tcp:3000`
+

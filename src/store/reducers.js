@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import example from '~/components/Example/store/reducer'
+import feed from '~/views/Feed/store/reducer'
 
 export default combineReducers({
-  example,
+  feed,
 })
