@@ -11,3 +11,5 @@ Challenger - clone instagram app
 Enable localhost to android
   - `adb reverse tcp:3000 tcp:3000`
 
+## Run server
+ - `yarn server`
