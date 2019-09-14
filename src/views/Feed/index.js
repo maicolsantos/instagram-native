@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { View, FlatList } from 'react-native'
 
@@ -10,6 +10,7 @@ export default () => {
   const [ page, setPage ] = useState(1)
   const [ refreshing, setRefreshing ] = useState(false)
   const [ total, setTotal ] = useState(0)
+  const [ viewable, setViewable ] = useState([])
   const feedStore = useSelector(({ feed }) => feed)
   const dispatch = useDispatch()
 
@@ -36,17 +37,25 @@ export default () => {
     setRefreshing(false)
   }
 
+  const handleViewableChanged = useCallback(({ changed }) => {
+    setViewable(changed.map(({ item }) => item.id))
+  }, [])
+
   return (
     <View>
       <FlatList
         data={feedStore.data}
         keyExtractor={(post) => String(post.id)}
-        renderItem={({ item }) => <Card item={item} />}
         onEndReached={() => getFeed()}
         onEndReachedThreshold={0.1}
         onRefresh={refreshList}
         refreshing={refreshing}
+        onViewableItemsChanged={handleViewableChanged}
+        viewabilityConfig={{ viewAreaCoveragePercentThreshold: 10 }}
         ListFooterComponent={feedStore.loading && <ActivityIndicator />}
+        renderItem={({ item }) => (
+          <Card item={item} shouldLoad={viewable.includes(item.id)} />
+        )}
       />
     </View>
   )
